@@ -214,9 +214,13 @@ const CIUDADES = [
 ];
 
 const OLA_POLAR = {
-  cordoba:  { min: 7,  max: 15 },
-  rosario:  { min: 8,  max: 15 },
-  bsas:     { min: 8,  max: 14 },
+  tucuman:   { min: 8,  max: 18 },
+  cordoba:   { min: 7,  max: 15 },
+  rosario:   { min: 8,  max: 15 },
+  bsas:      { min: 8,  max: 14 },
+  neuquen:   { min: -6, max: 3  },
+  bariloche: { min: -4, max: 2  },
+  comodoro:  { min: 3,  max: 7  },
 };
 
 const COLORES = {
@@ -341,7 +345,7 @@ function buildChart(ciudad, daily) {
     yaxis: {
       title: { text: "°C", font: { size: 11, color: "#6b7280" }, standoff: 6 },
       tickfont: { size: 10.5, color: "#6b7280" }, gridcolor: "#f0f2f5",
-      zeroline: false, linecolor: "#e2e6ea", rangemode: "tozero",
+      zeroline: false, linecolor: "#e2e6ea",
     },
     hovermode: "x unified",
     hoverlabel: { bgcolor: "#fff", bordercolor: "#e2e6ea", font: { size: 12, color: "#1a1f2e" } },
