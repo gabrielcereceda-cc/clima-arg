@@ -11,17 +11,19 @@
       --bg: #f7f8fa; --surface: #ffffff; --border: #e2e6ea;
       --text: #1a1f2e; --muted: #6b7280; --accent: #2E5F8A;
       --accent-lt: #EBF2F9; --radius: 8px;
+      --alert: #FEF3CD; --alert-border: #F59E0B; --alert-text: #92400E;
     }
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
 
-    header { background: var(--accent); padding: 16px 32px; display: flex; align-items: center; gap: 12px; }
+    header { background: var(--accent); padding: 14px 32px; display: flex; align-items: center; justify-content: space-between; }
     header h1 { font-size: 17px; font-weight: 600; color: #fff; }
     header span { font-size: 13px; color: rgba(255,255,255,0.65); margin-left: 4px; }
+    .header-meta { font-size: 11px; color: rgba(255,255,255,0.55); }
 
     .app { max-width: 1200px; margin: 0 auto; padding: 24px 24px 48px; display: grid; grid-template-columns: 220px 1fr; gap: 20px; align-items: start; }
 
     .panel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; position: sticky; top: 20px; }
-    .panel-section { margin-bottom: 24px; }
+    .panel-section { margin-bottom: 22px; }
     .panel-section:last-child { margin-bottom: 0; }
     .panel-label { font-size: 10px; font-weight: 600; letter-spacing: .07em; color: var(--muted); text-transform: uppercase; margin-bottom: 10px; }
 
@@ -37,6 +39,11 @@
     .date-row input[type=date] { font-size: 12px; padding: 6px 8px; border: 1px solid var(--border); border-radius: 6px; color: var(--text); background: var(--surface); width: 100%; cursor: pointer; }
     .date-row input[type=date]:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
 
+    /* Accesos rápidos de período */
+    .quick-dates { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 8px; }
+    .quick-btn { font-size: 11px; padding: 4px 8px; border: 1px solid var(--border); border-radius: 5px; background: var(--bg); color: var(--muted); cursor: pointer; transition: all .12s; }
+    .quick-btn:hover { background: var(--accent-lt); border-color: var(--accent); color: var(--accent); }
+
     .ref-group { display: flex; flex-direction: column; gap: 6px; }
     .ref-item { display: flex; align-items: center; gap: 8px; font-size: 12px; padding: 5px 8px; border-radius: 6px; cursor: pointer; }
     .ref-item:hover { background: var(--accent-lt); }
@@ -48,36 +55,58 @@
 
     .main-area { display: flex; flex-direction: column; gap: 20px; }
 
+    /* ── Alerta banner ── */
+    .alert-banner { background: var(--alert); border: 1px solid var(--alert-border); border-radius: var(--radius); padding: 12px 16px; font-size: 12.5px; color: var(--alert-text); display: flex; align-items: flex-start; gap: 10px; }
+    .alert-banner strong { font-weight: 600; }
+    .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+    .alert-list { margin-top: 4px; display: flex; flex-direction: column; gap: 2px; }
+
+    /* ── Indicadores summary ── */
+    .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; }
+    .stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 14px; }
+    .stat-label { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+    .stat-value { font-size: 20px; font-weight: 600; color: var(--text); }
+    .stat-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
     /* ── Tabla resumen ── */
     .summary-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 20px 16px; overflow-x: auto; }
-    .section-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+    .section-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
     .section-title span { font-size: 11px; font-weight: 400; color: var(--muted); }
 
+    .export-btn { font-size: 11px; padding: 4px 10px; border: 1px solid var(--border); border-radius: 5px; background: var(--bg); color: var(--muted); cursor: pointer; transition: all .12s; white-space: nowrap; }
+    .export-btn:hover { background: var(--accent-lt); border-color: var(--accent); color: var(--accent); }
+
     .summary-table { border-collapse: collapse; font-size: 12px; min-width: 100%; }
-    .summary-table th {
-      background: var(--accent); color: #fff; font-weight: 600;
-      padding: 8px 10px; text-align: center; white-space: nowrap; font-size: 11px;
-    }
-    .summary-table th.col-fecha { text-align: left; min-width: 110px; }
-    .summary-table th.city-header { border-left: 2px solid rgba(255,255,255,0.2); }
+    .summary-table th { background: var(--accent); color: #fff; font-weight: 600; padding: 8px 10px; text-align: center; white-space: nowrap; font-size: 11px; }
+    .summary-table th.col-fecha { text-align: left; min-width: 120px; }
+    .summary-table th.city-header { border-left: 2px solid rgba(255,255,255,0.25); }
     .summary-table th.sub-min { background: #1e4d7a; font-weight: 500; font-size: 10px; }
     .summary-table th.sub-max { background: #a63020; font-weight: 500; font-size: 10px; }
+    .summary-table th.sub-ref { background: #4a8a9a; font-weight: 500; font-size: 10px; }
     .summary-table td { padding: 6px 10px; text-align: center; border-bottom: 1px solid var(--border); }
     .summary-table td.col-fecha { text-align: left; font-weight: 500; color: var(--text); white-space: nowrap; }
     .summary-table tr:nth-child(even) td { background: #f4f7fb; }
     .summary-table tr:last-child td { border-bottom: none; }
     .td-max { color: #b83020; font-weight: 600; }
     .td-min { color: #1e5a8a; font-weight: 600; }
+    .td-ref { color: #4a8a9a; font-weight: 500; font-size: 11px; }
     .city-border { border-left: 2px solid var(--border); }
+
+    /* Alerta en celda de tabla */
+    .td-alert { background: #FFF3CD !important; color: #92400E !important; font-weight: 700; border-radius: 3px; }
 
     /* ── Gráficos ── */
     .charts-area { display: flex; flex-direction: column; gap: 16px; }
     .chart-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 16px 12px; }
-    .chart-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+    .chart-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2px; }
+    .chart-title { font-size: 14px; font-weight: 600; color: var(--text); }
+    .chart-alert-badge { font-size: 10px; background: var(--alert); color: var(--alert-text); border: 1px solid var(--alert-border); border-radius: 4px; padding: 2px 7px; font-weight: 600; }
     .chart-subtitle { font-size: 12px; color: var(--muted); margin-bottom: 12px; }
     .chart-plot { width: 100%; height: 250px; }
 
-    /* Estados */
+    /* ── Update timestamp ── */
+    .update-time { font-size: 11px; color: var(--muted); text-align: right; padding: 4px 0; }
+
     .empty-state { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 60px 20px; text-align: center; color: var(--muted); font-size: 14px; }
     .empty-icon { font-size: 32px; margin-bottom: 12px; opacity: .4; }
     .spinner { width: 28px; height: 28px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin .7s linear infinite; margin: 0 auto 12px; }
@@ -88,12 +117,13 @@
 <body>
 
 <header>
-  <h1>Clima Argentina</h1>
-  <span>— Bandas de temperatura</span>
+  <div>
+    <h1>Clima Argentina <span>— Bandas de temperatura</span></h1>
+  </div>
+  <div class="header-meta" id="header-time"></div>
 </header>
 
 <div class="app">
-
   <aside class="panel">
     <div class="panel-section">
       <div class="panel-label">Ciudades</div>
@@ -101,6 +131,11 @@
     </div>
     <div class="panel-section">
       <div class="panel-label">Período</div>
+      <div class="quick-dates">
+        <button class="quick-btn" onclick="setQuick(7)">7 días</button>
+        <button class="quick-btn" onclick="setQuick(14)">14 días</button>
+        <button class="quick-btn" onclick="setQuick(16)">16 días</button>
+      </div>
       <div class="date-group">
         <div class="date-row"><label>Desde</label><input type="date" id="date-from"></div>
         <div class="date-row"><label>Hasta</label><input type="date" id="date-to"></div>
@@ -119,18 +154,17 @@
       Seleccioná ciudades y hacé clic en <strong>Actualizar gráficos</strong>
     </div>
   </main>
-
 </div>
 
 <script>
 const CIUDADES = [
-  { id: "tucuman",   label: "Tucumán",       lat: -26.8241, lon: -65.2226 },
-  { id: "cordoba",   label: "Córdoba",        lat: -31.4135, lon: -64.1811 },
-  { id: "rosario",   label: "Rosario",        lat: -32.9442, lon: -60.6505 },
-  { id: "bsas",      label: "Bs. Aires",      lat: -34.6037, lon: -58.3816 },
-  { id: "neuquen",   label: "Neuquén",        lat: -38.9516, lon: -68.0591 },
-  { id: "bariloche", label: "Bariloche",      lat: -41.1335, lon: -71.3103 },
-  { id: "comodoro",  label: "Cmd. Riv",       lat: -45.8667, lon: -67.5000 },
+  { id: "tucuman",   label: "Tucumán",   lat: -26.8241, lon: -65.2226 },
+  { id: "cordoba",   label: "Córdoba",   lat: -31.4135, lon: -64.1811 },
+  { id: "rosario",   label: "Rosario",   lat: -32.9442, lon: -60.6505 },
+  { id: "bsas",      label: "Bs. Aires", lat: -34.6037, lon: -58.3816 },
+  { id: "neuquen",   label: "Neuquén",   lat: -38.9516, lon: -68.0591 },
+  { id: "bariloche", label: "Bariloche", lat: -41.1335, lon: -71.3103 },
+  { id: "comodoro",  label: "Cmd. Riv",  lat: -45.8667, lon: -67.5000 },
 ];
 
 const OLA_POLAR = {
@@ -156,11 +190,22 @@ function formatLabel(iso) {
   const d = new Date(iso + "T12:00:00");
   return `${DIAS_ES[d.getDay()]} ${d.getDate()}-${MESES_ES[d.getMonth()]}-${String(d.getFullYear()).slice(2)}`;
 }
+function nowStr() {
+  const d = new Date();
+  return `Actualizado: ${d.toLocaleDateString("es-AR")} ${d.toLocaleTimeString("es-AR", {hour:"2-digit",minute:"2-digit"})}`;
+}
+
+// ── Accesos rápidos ───────────────────────────────────────────
+function setQuick(days) {
+  document.getElementById("date-from").value = isoHoy();
+  document.getElementById("date-to").value   = isoMas(days - 1);
+}
 
 // ── Init ──────────────────────────────────────────────────────
 function initControls() {
   document.getElementById("date-from").value = isoHoy();
   document.getElementById("date-to").value   = isoMas(6);
+  document.getElementById("header-time").textContent = nowStr();
 
   const list = document.getElementById("city-list");
   CIUDADES.forEach(c => {
@@ -198,34 +243,74 @@ async function fetchForecast(lat, lon, start, end) {
   return (await res.json()).daily;
 }
 
-// ── Tabla resumen (todas las ciudades juntas) ─────────────────
+// ── Detección de alertas ──────────────────────────────────────
+function getAlerts(ciudad, daily) {
+  const ola = OLA_POLAR[ciudad.id];
+  if (!ola) return [];
+  const alerts = [];
+  daily.time.forEach((iso, i) => {
+    const mn = daily.temperature_2m_min[i];
+    const mx = daily.temperature_2m_max[i];
+    if (mn < ola.min || mx < ola.min) {
+      alerts.push({ fecha: formatLabel(iso), tipo: "frío extremo", mn: Math.round(mn), mx: Math.round(mx), refMin: ola.min });
+    }
+  });
+  return alerts;
+}
+
+// ── Banner de alertas globales ────────────────────────────────
+function buildAlertBanner(results) {
+  const allAlerts = [];
+  results.forEach(({ ciudad, daily }) => {
+    const alerts = getAlerts(ciudad, daily);
+    alerts.forEach(a => allAlerts.push({ ciudad: ciudad.label, ...a }));
+  });
+  if (allAlerts.length === 0) return "";
+  const items = allAlerts.map(a =>
+    `<div>⚠ <strong>${a.ciudad}</strong> — ${a.fecha}: Mín ${a.mn}° / Máx ${a.mx}° (por debajo de referencia ${a.refMin}°)</div>`
+  ).join("");
+  return `<div class="alert-banner">
+    <div class="alert-icon">🌨</div>
+    <div><strong>Temperaturas bajo referencia Ola Polar</strong><div class="alert-list">${items}</div></div>
+  </div>`;
+}
+
+// ── Tabla resumen ─────────────────────────────────────────────
 function buildSummaryTable(results) {
   const fechas = results[0].daily.time;
+  const showOla = layers.ola_polar;
 
-  // Header fila 1: ciudades
   const cityHeaders = results.map(({ ciudad }) =>
-    `<th class="city-header" colspan="2">${ciudad.label}</th>`
+    `<th class="city-header" colspan="${showOla && OLA_POLAR[ciudad.id] ? 4 : 2}">${ciudad.label}</th>`
   ).join("");
 
-  // Header fila 2: Min / Max por ciudad
-  const subHeaders = results.map(() =>
-    `<th class="sub-min">Min</th><th class="sub-max">Max</th>`
-  ).join("");
+  const subHeaders = results.map(({ ciudad }) => {
+    const ola = showOla && OLA_POLAR[ciudad.id];
+    return `<th class="sub-min city-border">Min</th><th class="sub-max">Max</th>` +
+      (ola ? `<th class="sub-ref">Min ref</th><th class="sub-ref">Max ref</th>` : "");
+  }).join("");
 
-  // Filas de datos
   const rows = fechas.map((iso, i) => {
     const cells = results.map(({ ciudad, daily }) => {
-      const mn = Math.round(daily.temperature_2m_min[i]);
-      const mx = Math.round(daily.temperature_2m_max[i]);
-      return `<td class="td-min city-border">${mn}°</td><td class="td-max">${mx}°</td>`;
+      const mn  = Math.round(daily.temperature_2m_min[i]);
+      const mx  = Math.round(daily.temperature_2m_max[i]);
+      const ola = showOla && OLA_POLAR[ciudad.id];
+      const alertMn = ola && mn < ola.min;
+      const alertMx = ola && mx < ola.min;
+      return `<td class="td-min city-border${alertMn ? " td-alert" : ""}">${mn}°</td>` +
+             `<td class="td-max${alertMx ? " td-alert" : ""}">${mx}°</td>` +
+             (ola ? `<td class="td-ref">${ola.min}°</td><td class="td-ref">${ola.max}°</td>` : "");
     }).join("");
     return `<tr><td class="col-fecha">${formatLabel(iso)}</td>${cells}</tr>`;
   }).join("");
 
   return `
     <div class="summary-card">
-      <div class="section-title">Tabla de temperaturas <span>Min / Max por ciudad</span></div>
-      <table class="summary-table">
+      <div class="section-title">
+        Tabla de temperaturas <span>Min / Max por ciudad</span>
+        <button class="export-btn" onclick="exportCSV()">⬇ Exportar CSV</button>
+      </div>
+      <table class="summary-table" id="summary-table">
         <thead>
           <tr><th class="col-fecha">Fecha</th>${cityHeaders}</tr>
           <tr><th></th>${subHeaders}</tr>
@@ -235,6 +320,27 @@ function buildSummaryTable(results) {
     </div>`;
 }
 
+// ── Export CSV ────────────────────────────────────────────────
+let _lastResults = [];
+function exportCSV() {
+  if (!_lastResults.length) return;
+  const fechas = _lastResults[0].daily.time;
+  const headers = ["Fecha", ..._lastResults.flatMap(({ ciudad }) => [`${ciudad.label} Min`, `${ciudad.label} Max`])];
+  const rows = fechas.map((iso, i) => [
+    formatLabel(iso),
+    ..._lastResults.flatMap(({ daily }) => [
+      Math.round(daily.temperature_2m_min[i]),
+      Math.round(daily.temperature_2m_max[i])
+    ])
+  ]);
+  const csv = [headers, ...rows].map(r => r.join(",")).join("\n");
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = `clima_argentina_${isoHoy()}.csv`;
+  a.click();
+}
+
 // ── Gráfico individual ────────────────────────────────────────
 function buildChart(ciudad, daily) {
   const labels = daily.time.map(formatLabel);
@@ -242,14 +348,13 @@ function buildChart(ciudad, daily) {
   const tmax   = daily.temperature_2m_max;
   const traces = [];
 
-  // Líneas para tooltip
   traces.push({
-    x: labels, y: tmax, mode: "lines",
+    x: labels, y: tmax.map(v => Math.round(v)), mode: "lines",
     line: { color: COLORES.pronostico, width: 1.5, dash: "dot" },
     name: "Máx", hovertemplate: "<b>Máx: %{y}°C</b><extra></extra>",
   });
   traces.push({
-    x: labels, y: tmin, mode: "lines",
+    x: labels, y: tmin.map(v => Math.round(v)), mode: "lines",
     line: { color: "#2E5F8A", width: 1.5, dash: "dot" },
     name: "Mín", hovertemplate: "<b>Mín: %{y}°C</b><extra></extra>",
   });
@@ -277,16 +382,15 @@ function buildChart(ciudad, daily) {
   }
 
   const layout = {
-    margin: { t: 10, r: 20, b: 60, l: 42 },
+    margin: { t: 10, r: 20, b: 65, l: 42 },
     paper_bgcolor: "rgba(0,0,0,0)", plot_bgcolor: "rgba(0,0,0,0)",
     showlegend: true,
-    legend: { orientation: "h", y: -0.3, x: 0, font: { size: 11 }, bgcolor: "rgba(0,0,0,0)" },
+    legend: { orientation: "h", y: -0.32, x: 0, font: { size: 11 }, bgcolor: "rgba(0,0,0,0)" },
     xaxis: { tickfont: { size: 10.5, color: "#6b7280" }, showgrid: false, zeroline: false, linecolor: "#e2e6ea" },
     yaxis: {
       title: { text: "°C", font: { size: 11, color: "#6b7280" }, standoff: 6 },
       tickfont: { size: 10.5, color: "#6b7280" }, gridcolor: "#f0f2f5",
-      zeroline: true, zerolinecolor: "#d1d5db", zerolinewidth: 1,
-      linecolor: "#e2e6ea",
+      zeroline: true, zerolinecolor: "#d1d5db", zerolinewidth: 1, linecolor: "#e2e6ea",
     },
     hovermode: "x unified",
     hoverlabel: { bgcolor: "#fff", bordercolor: "#e2e6ea", font: { size: 12, color: "#1a1f2e" } },
@@ -322,23 +426,35 @@ async function updateCharts() {
     const results = await Promise.all(
       selected.map(c => fetchForecast(c.lat, c.lon, startDate, endDate).then(d => ({ ciudad: c, daily: d })))
     );
+    _lastResults = results;
 
     area.innerHTML = "";
 
-    // ── 1. Tabla resumen ──────────────────────────────────────
+    // Timestamp
+    document.getElementById("header-time").textContent = nowStr();
+
+    // Alertas globales
+    const alertHtml = buildAlertBanner(results);
+    if (alertHtml) area.insertAdjacentHTML("beforeend", alertHtml);
+
+    // Tabla resumen
     area.insertAdjacentHTML("beforeend", buildSummaryTable(results));
 
-    // ── 2. Gráficos individuales ──────────────────────────────
+    // Gráficos
     const chartsWrap = document.createElement("div");
     chartsWrap.className = "charts-area";
     area.appendChild(chartsWrap);
 
     results.forEach(({ ciudad, daily }) => {
+      const alerts = getAlerts(ciudad, daily);
       const dateRange = `${formatLabel(daily.time[0])} → ${formatLabel(daily.time[daily.time.length - 1])}`;
       const card = document.createElement("div");
       card.className = "chart-card";
       card.innerHTML = `
-        <div class="chart-title">${ciudad.label}</div>
+        <div class="chart-header">
+          <div class="chart-title">${ciudad.label}</div>
+          ${alerts.length ? `<div class="chart-alert-badge">⚠ ${alerts.length} día${alerts.length > 1 ? "s" : ""} bajo referencia</div>` : ""}
+        </div>
         <div class="chart-subtitle">${dateRange}</div>
         <div class="chart-plot" id="chart-${ciudad.id}"></div>`;
       chartsWrap.appendChild(card);
