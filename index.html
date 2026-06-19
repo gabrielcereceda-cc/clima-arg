@@ -26,7 +26,6 @@
       min-height: 100vh;
     }
 
-    /* ── Header ── */
     header {
       background: var(--accent);
       padding: 16px 32px;
@@ -34,19 +33,9 @@
       align-items: center;
       gap: 12px;
     }
-    header h1 {
-      font-size: 17px;
-      font-weight: 600;
-      color: #fff;
-      letter-spacing: -0.01em;
-    }
-    header span {
-      font-size: 13px;
-      color: rgba(255,255,255,0.65);
-      margin-left: 4px;
-    }
+    header h1 { font-size: 17px; font-weight: 600; color: #fff; letter-spacing: -0.01em; }
+    header span { font-size: 13px; color: rgba(255,255,255,0.65); margin-left: 4px; }
 
-    /* ── Layout ── */
     .app {
       max-width: 1100px;
       margin: 0 auto;
@@ -57,7 +46,6 @@
       align-items: start;
     }
 
-    /* ── Panel lateral ── */
     .panel {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -69,131 +57,111 @@
     .panel-section { margin-bottom: 24px; }
     .panel-section:last-child { margin-bottom: 0; }
     .panel-label {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: .07em;
-      color: var(--muted);
-      text-transform: uppercase;
-      margin-bottom: 10px;
+      font-size: 10px; font-weight: 600; letter-spacing: .07em;
+      color: var(--muted); text-transform: uppercase; margin-bottom: 10px;
     }
 
-    /* Ciudades */
     .city-list { display: flex; flex-direction: column; gap: 6px; }
     .city-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
-      padding: 5px 8px;
-      border-radius: 6px;
-      font-size: 13px;
-      transition: background .12s;
+      display: flex; align-items: center; gap: 8px; cursor: pointer;
+      padding: 5px 8px; border-radius: 6px; font-size: 13px; transition: background .12s;
     }
     .city-item:hover { background: var(--accent-lt); }
     .city-item input[type=checkbox] { accent-color: var(--accent); width: 14px; height: 14px; cursor: pointer; }
     .city-item.active { background: var(--accent-lt); font-weight: 500; }
 
-    /* Fechas */
     .date-group { display: flex; flex-direction: column; gap: 8px; }
     .date-row { display: flex; flex-direction: column; gap: 3px; }
     .date-row label { font-size: 11px; color: var(--muted); }
     .date-row input[type=date] {
-      font-size: 12px;
-      padding: 6px 8px;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      color: var(--text);
-      background: var(--surface);
-      width: 100%;
-      cursor: pointer;
+      font-size: 12px; padding: 6px 8px; border: 1px solid var(--border);
+      border-radius: 6px; color: var(--text); background: var(--surface); width: 100%; cursor: pointer;
     }
     .date-row input[type=date]:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
 
-    /* Bandas de referencia */
     .ref-group { display: flex; flex-direction: column; gap: 6px; }
     .ref-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 12px;
-      padding: 5px 8px;
-      border-radius: 6px;
-      cursor: pointer;
+      display: flex; align-items: center; gap: 8px; font-size: 12px;
+      padding: 5px 8px; border-radius: 6px; cursor: pointer;
     }
     .ref-item:hover { background: var(--accent-lt); }
-    .ref-swatch {
-      width: 12px; height: 12px;
-      border-radius: 3px;
-      flex-shrink: 0;
-    }
+    .ref-swatch { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
 
-    /* Botón */
     .btn {
-      width: 100%;
-      padding: 9px;
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: opacity .15s;
-      margin-top: 4px;
+      width: 100%; padding: 9px; background: var(--accent); color: #fff;
+      border: none; border-radius: 6px; font-size: 13px; font-weight: 600;
+      cursor: pointer; transition: opacity .15s; margin-top: 4px;
     }
     .btn:hover { opacity: .88; }
     .btn:disabled { opacity: .45; cursor: default; }
 
-    /* ── Área de gráficos ── */
-    .charts-area { display: flex; flex-direction: column; gap: 16px; }
+    .charts-area { display: flex; flex-direction: column; gap: 20px; }
 
     .chart-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 20px 16px 12px;
+      padding: 20px 16px 16px;
     }
-    .chart-title {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 4px;
-    }
-    .chart-subtitle {
-      font-size: 12px;
-      color: var(--muted);
-      margin-bottom: 12px;
-    }
+    .chart-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+    .chart-subtitle { font-size: 12px; color: var(--muted); margin-bottom: 12px; }
     .chart-plot { width: 100%; height: 260px; }
 
-    /* Estado vacío / cargando */
-    .empty-state {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 60px 20px;
+    /* ── Tabla de temperaturas ── */
+    .temp-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      font-size: 12px;
+    }
+    .temp-table th {
+      background: var(--accent);
+      color: #fff;
+      font-weight: 600;
+      padding: 7px 10px;
       text-align: center;
-      color: var(--muted);
-      font-size: 14px;
+      font-size: 11px;
+      letter-spacing: .02em;
+    }
+    .temp-table th:first-child { text-align: left; border-radius: 6px 0 0 0; }
+    .temp-table th:last-child { border-radius: 0 6px 0 0; }
+    .temp-table td {
+      padding: 6px 10px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+    }
+    .temp-table td:first-child { text-align: left; font-weight: 500; color: var(--muted); }
+    .temp-table tr:nth-child(even) td { background: #f7f9fc; }
+    .temp-table tr:last-child td { border-bottom: none; }
+    .temp-table tr:last-child td:first-child { border-radius: 0 0 0 6px; }
+    .temp-table tr:last-child td:last-child { border-radius: 0 0 6px 0; }
+    .td-max { color: #C0391B; font-weight: 600; }
+    .td-min { color: #2E5F8A; font-weight: 600; }
+
+    .table-wrap {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-top: 16px;
+    }
+
+    .empty-state {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 60px 20px;
+      text-align: center; color: var(--muted); font-size: 14px;
     }
     .empty-icon { font-size: 32px; margin-bottom: 12px; opacity: .4; }
     .spinner {
-      width: 28px; height: 28px;
-      border: 3px solid var(--border);
-      border-top-color: var(--accent);
-      border-radius: 50%;
-      animation: spin .7s linear infinite;
-      margin: 0 auto 12px;
+      width: 28px; height: 28px; border: 3px solid var(--border);
+      border-top-color: var(--accent); border-radius: 50%;
+      animation: spin .7s linear infinite; margin: 0 auto 12px;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
-
     .error-msg {
-      background: #FEF2F2;
-      border: 1px solid #FECACA;
-      border-radius: var(--radius);
-      padding: 14px 16px;
-      font-size: 13px;
-      color: #991B1B;
+      background: #FEF2F2; border: 1px solid #FECACA;
+      border-radius: var(--radius); padding: 14px 16px;
+      font-size: 13px; color: #991B1B;
     }
   </style>
 </head>
@@ -206,40 +174,25 @@
 
 <div class="app">
 
-  <!-- ── Panel lateral ── -->
   <aside class="panel">
-
     <div class="panel-section">
       <div class="panel-label">Ciudades</div>
       <div class="city-list" id="city-list"></div>
     </div>
-
     <div class="panel-section">
       <div class="panel-label">Período</div>
       <div class="date-group">
-        <div class="date-row">
-          <label>Desde</label>
-          <input type="date" id="date-from">
-        </div>
-        <div class="date-row">
-          <label>Hasta</label>
-          <input type="date" id="date-to">
-        </div>
+        <div class="date-row"><label>Desde</label><input type="date" id="date-from"></div>
+        <div class="date-row"><label>Hasta</label><input type="date" id="date-to"></div>
       </div>
     </div>
-
     <div class="panel-section">
       <div class="panel-label">Capas</div>
       <div class="ref-group" id="layers-list"></div>
     </div>
-
-    <button class="btn" id="btn-update" onclick="updateCharts()">
-      Actualizar gráficos
-    </button>
-
+    <button class="btn" id="btn-update" onclick="updateCharts()">Actualizar gráficos</button>
   </aside>
 
-  <!-- ── Gráficos ── -->
   <main class="charts-area" id="charts-area">
     <div class="empty-state">
       <div class="empty-icon">🌡</div>
@@ -250,21 +203,16 @@
 </div>
 
 <script>
-// ═══════════════════════════════════════════════════════════
-// CONFIGURACIÓN
-// ═══════════════════════════════════════════════════════════
-
 const CIUDADES = [
-  { id: "tucuman",   label: "Tucumán",      lat: -26.8241, lon: -65.2226 },
-  { id: "cordoba",   label: "Córdoba",       lat: -31.4135, lon: -64.1811 },
-  { id: "rosario",   label: "Rosario",       lat: -32.9442, lon: -60.6505 },
-  { id: "bsas",      label: "Bs. Aires",     lat: -34.6037, lon: -58.3816 },
-  { id: "neuquen",   label: "Neuquén",       lat: -38.9516, lon: -68.0591 },
-  { id: "bariloche", label: "Bariloche",     lat: -41.1335, lon: -71.3103 },
-  { id: "comodoro",  label: "Cmd. Rivadavia",lat: -45.8667, lon: -67.5000 },
+  { id: "tucuman",   label: "Tucumán",       lat: -26.8241, lon: -65.2226 },
+  { id: "cordoba",   label: "Córdoba",        lat: -31.4135, lon: -64.1811 },
+  { id: "rosario",   label: "Rosario",        lat: -32.9442, lon: -60.6505 },
+  { id: "bsas",      label: "Bs. Aires",      lat: -34.6037, lon: -58.3816 },
+  { id: "neuquen",   label: "Neuquén",        lat: -38.9516, lon: -68.0591 },
+  { id: "bariloche", label: "Bariloche",      lat: -41.1335, lon: -71.3103 },
+  { id: "comodoro",  label: "Cmd. Rivadavia", lat: -45.8667, lon: -67.5000 },
 ];
 
-// Banda Ola Polar jul-25 — valores fijos (Min, Max) por ciudad
 const OLA_POLAR = {
   cordoba:  { min: 7,  max: 15 },
   rosario:  { min: 8,  max: 15 },
@@ -276,184 +224,169 @@ const COLORES = {
   ola_polar:  "#A8D5E8",
 };
 
-const BASE_URL = "https://api.open-meteo.com/v1/forecast";
+const BASE_URL  = "https://api.open-meteo.com/v1/forecast";
+const DIAS_ES   = ["Dom.","Lun.","Mar.","Mié.","Jue.","Vie.","Sáb."];
+const MESES_ES  = ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"];
 
-// ═══════════════════════════════════════════════════════════
-// INIT — fechas por defecto y controles
-// ═══════════════════════════════════════════════════════════
+const layers = { pronostico: true, ola_polar: true };
+const DEFAULT_CIUDADES = new Set(["cordoba", "rosario", "bsas"]);
 
-const DIAS_ES = ["Dom.","Lun.","Mar.","Mié.","Jue.","Vie.","Sáb."];
-
-function isoHoy() {
-  return new Date().toISOString().slice(0, 10);
-}
+// ── Helpers de fecha ─────────────────────────────────────────
+function isoHoy() { return new Date().toISOString().slice(0, 10); }
 function isoMas(days) {
   const d = new Date(); d.setDate(d.getDate() + days);
   return d.toISOString().slice(0, 10);
 }
+function formatLabel(iso) {
+  const d = new Date(iso + "T12:00:00");
+  return `${DIAS_ES[d.getDay()]} ${d.getDate()}-${MESES_ES[d.getMonth()]}`;
+}
 
-// Ciudades seleccionadas por defecto
-const DEFAULT_CIUDADES = new Set(["cordoba", "rosario", "bsas"]);
-
-// Capas activas
-const layers = {
-  pronostico: true,
-  ola_polar:  true,
-};
-
+// ── Init controles ────────────────────────────────────────────
 function initControls() {
-  // Fechas
   document.getElementById("date-from").value = isoHoy();
   document.getElementById("date-to").value   = isoMas(6);
 
-  // Checkboxes ciudades
   const list = document.getElementById("city-list");
   CIUDADES.forEach(c => {
     const checked = DEFAULT_CIUDADES.has(c.id);
     const item = document.createElement("label");
     item.className = "city-item" + (checked ? " active" : "");
-    item.innerHTML = `
-      <input type="checkbox" value="${c.id}" ${checked ? "checked" : ""}>
-      ${c.label}
-    `;
+    item.innerHTML = `<input type="checkbox" value="${c.id}" ${checked ? "checked" : ""}>${c.label}`;
     item.querySelector("input").addEventListener("change", e => {
       item.classList.toggle("active", e.target.checked);
     });
     list.appendChild(item);
   });
 
-  // Capas
   const layersList = document.getElementById("layers-list");
-  const layerDefs = [
-    { key: "pronostico", label: "Banda pronóstico",      color: COLORES.pronostico },
-    { key: "ola_polar",  label: "Ola Polar (jul-25)",    color: COLORES.ola_polar  },
-  ];
-  layerDefs.forEach(l => {
+  [
+    { key: "pronostico", label: "Banda pronóstico",   color: COLORES.pronostico },
+    { key: "ola_polar",  label: "Ola Polar (jul-25)", color: COLORES.ola_polar  },
+  ].forEach(l => {
     const item = document.createElement("label");
     item.className = "ref-item";
     item.innerHTML = `
-      <input type="checkbox" ${layers[l.key] ? "checked" : ""} style="accent-color:${l.color}; width:14px; height:14px; cursor:pointer">
+      <input type="checkbox" ${layers[l.key] ? "checked" : ""} style="accent-color:${l.color};width:14px;height:14px;cursor:pointer">
       <span class="ref-swatch" style="background:${l.color}"></span>
       <span style="font-size:12px">${l.label}</span>
     `;
-    item.querySelector("input").addEventListener("change", e => {
-      layers[l.key] = e.target.checked;
-    });
+    item.querySelector("input").addEventListener("change", e => { layers[l.key] = e.target.checked; });
     layersList.appendChild(item);
   });
 }
 
-// ═══════════════════════════════════════════════════════════
-// API
-// ═══════════════════════════════════════════════════════════
-
+// ── API ───────────────────────────────────────────────────────
 async function fetchForecast(lat, lon, startDate, endDate) {
   const params = new URLSearchParams({
-    latitude:   lat,
-    longitude:  lon,
-    daily:      "temperature_2m_max,temperature_2m_min",
-    timezone:   "America/Argentina/Buenos_Aires",
-    start_date: startDate,
-    end_date:   endDate,
+    latitude: lat, longitude: lon,
+    daily: "temperature_2m_max,temperature_2m_min",
+    timezone: "America/Argentina/Buenos_Aires",
+    start_date: startDate, end_date: endDate,
   });
   const res = await fetch(`${BASE_URL}?${params}`);
   if (!res.ok) throw new Error(`API error ${res.status}`);
-  const data = await res.json();
-  return data.daily;
+  return (await res.json()).daily;
 }
 
-// ═══════════════════════════════════════════════════════════
-// GRÁFICO
-// ═══════════════════════════════════════════════════════════
-
-function formatDateLabel(isoStr) {
-  const d = new Date(isoStr + "T12:00:00");
-  return `${DIAS_ES[d.getDay()]} ${d.getDate()}-${d.toLocaleString("es", {month:"short"})}`;
-}
-
-function buildChart(ciudad, daily, startDate, endDate) {
-  const labels = daily.time.map(formatDateLabel);
+// ── Gráfico ───────────────────────────────────────────────────
+function buildChart(ciudad, daily) {
+  const labels = daily.time.map(formatLabel);
   const tmin   = daily.temperature_2m_min;
   const tmax   = daily.temperature_2m_max;
   const traces = [];
 
-  // Banda pronóstico (área rellena entre tmin y tmax)
+  // Líneas invisibles para el tooltip unificado
+  traces.push({
+    x: labels, y: tmax,
+    mode: "lines", line: { color: COLORES.pronostico, width: 1.5, dash: "dot" },
+    name: "Máx",
+    hovertemplate: "<b>Máx: %{y}°C</b><extra></extra>",
+  });
+  traces.push({
+    x: labels, y: tmin,
+    mode: "lines", line: { color: "#2E5F8A", width: 1.5, dash: "dot" },
+    name: "Mín",
+    hovertemplate: "<b>Mín: %{y}°C</b><extra></extra>",
+  });
+
   if (layers.pronostico) {
     traces.push({
       x: [...labels, ...labels.slice().reverse()],
       y: [...tmax, ...tmin.slice().reverse()],
-      fill: "toself",
-      fillcolor: COLORES.pronostico + "CC",
-      line: { color: "transparent" },
-      name: "Banda pronóstico",
-      hovertemplate: "%{text}",
-      text: labels.map((l, i) => `${l}<br>Máx: ${Math.round(tmax[i])}°C<br>Mín: ${Math.round(tmin[i])}°C`),
-      type: "scatter",
-      mode: "none",
+      fill: "toself", fillcolor: COLORES.pronostico + "CC",
+      line: { color: "transparent" }, name: "Banda pronóstico",
+      hoverinfo: "skip", type: "scatter", mode: "none",
     });
   }
 
-  // Banda Ola Polar (si existe para esta ciudad)
   const ola = OLA_POLAR[ciudad.id];
   if (layers.ola_polar && ola) {
     const n = labels.length;
     traces.push({
       x: [...labels, ...labels.slice().reverse()],
       y: [...Array(n).fill(ola.max), ...Array(n).fill(ola.min)],
-      fill: "toself",
-      fillcolor: COLORES.ola_polar + "BB",
-      line: { color: "transparent" },
-      name: "Ola Polar (jul-25)",
-      hoverinfo: "skip",
-      type: "scatter",
-      mode: "none",
+      fill: "toself", fillcolor: COLORES.ola_polar + "BB",
+      line: { color: "transparent" }, name: "Ola Polar (jul-25)",
+      hoverinfo: "skip", type: "scatter", mode: "none",
     });
   }
 
   const layout = {
     margin: { t: 10, r: 20, b: 60, l: 42 },
-    paper_bgcolor: "rgba(0,0,0,0)",
-    plot_bgcolor:  "rgba(0,0,0,0)",
+    paper_bgcolor: "rgba(0,0,0,0)", plot_bgcolor: "rgba(0,0,0,0)",
     showlegend: true,
     legend: { orientation: "h", y: -0.28, x: 0, font: { size: 11 }, bgcolor: "rgba(0,0,0,0)" },
-    xaxis: {
-      tickfont: { size: 10.5, color: "#6b7280" },
-      tickangle: 0,
-      showgrid: false,
-      zeroline: false,
-      linecolor: "#e2e6ea",
-    },
+    xaxis: { tickfont: { size: 10.5, color: "#6b7280" }, showgrid: false, zeroline: false, linecolor: "#e2e6ea" },
     yaxis: {
       title: { text: "°C", font: { size: 11, color: "#6b7280" }, standoff: 6 },
-      tickfont: { size: 10.5, color: "#6b7280" },
-      gridcolor: "#f0f2f5",
-      zeroline: false,
-      linecolor: "#e2e6ea",
-      rangemode: "tozero",
+      tickfont: { size: 10.5, color: "#6b7280" }, gridcolor: "#f0f2f5",
+      zeroline: false, linecolor: "#e2e6ea", rangemode: "tozero",
     },
     hovermode: "x unified",
+    hoverlabel: { bgcolor: "#fff", bordercolor: "#e2e6ea", font: { size: 12, color: "#1a1f2e" } },
   };
 
-  const config = {
-    displayModeBar: false,
-    responsive: true,
-  };
-
-  return { traces, layout, config };
+  return { traces, layout, config: { displayModeBar: false, responsive: true } };
 }
 
-// ═══════════════════════════════════════════════════════════
-// UPDATE
-// ═══════════════════════════════════════════════════════════
+// ── Tabla ─────────────────────────────────────────────────────
+function buildTable(ciudad, daily) {
+  const ola = OLA_POLAR[ciudad.id];
 
+  let thead = `<tr>
+    <th>Fecha</th>
+    <th colspan="2">Pronóstico</th>
+    ${ola ? `<th colspan="2">Ola Polar jul-25</th>` : ""}
+  </tr>
+  <tr>
+    <th></th>
+    <th style="background:#c0391b">Máx</th>
+    <th style="background:#2E5F8A">Mín</th>
+    ${ola ? `<th style="background:#6aaccf">Máx ref</th><th style="background:#6aaccf">Mín ref</th>` : ""}
+  </tr>`;
+
+  let tbody = daily.time.map((iso, i) => {
+    const mx = Math.round(daily.temperature_2m_max[i]);
+    const mn = Math.round(daily.temperature_2m_min[i]);
+    return `<tr>
+      <td>${formatLabel(iso)}</td>
+      <td class="td-max">${mx}°</td>
+      <td class="td-min">${mn}°</td>
+      ${ola ? `<td style="color:#1a6a8a;font-weight:600">${ola.max}°</td><td style="color:#1a6a8a;font-weight:600">${ola.min}°</td>` : ""}
+    </tr>`;
+  }).join("");
+
+  return `<div class="table-wrap"><table class="temp-table"><thead>${thead}</thead><tbody>${tbody}</tbody></table></div>`;
+}
+
+// ── Update ────────────────────────────────────────────────────
 async function updateCharts() {
-  const btn = document.getElementById("btn-update");
+  const btn  = document.getElementById("btn-update");
   const area = document.getElementById("charts-area");
 
-  // Ciudades seleccionadas
   const selected = [...document.querySelectorAll("#city-list input:checked")]
-    .map(el => CIUDADES.find(c => c.id === el.value))
-    .filter(Boolean);
+    .map(el => CIUDADES.find(c => c.id === el.value)).filter(Boolean);
 
   if (selected.length === 0) {
     area.innerHTML = `<div class="empty-state"><div class="empty-icon">📍</div>Seleccioná al menos una ciudad.</div>`;
@@ -464,39 +397,31 @@ async function updateCharts() {
   const endDate   = document.getElementById("date-to").value;
 
   if (!startDate || !endDate || startDate > endDate) {
-    area.innerHTML = `<div class="error-msg">Revisá el rango de fechas — "Desde" debe ser anterior a "Hasta".</div>`;
+    area.innerHTML = `<div class="error-msg">Revisá el rango de fechas.</div>`;
     return;
   }
 
-  // Loading
   btn.disabled = true;
-  area.innerHTML = `
-    <div class="empty-state">
-      <div class="spinner"></div>
-      Consultando pronósticos...
-    </div>`;
+  area.innerHTML = `<div class="empty-state"><div class="spinner"></div>Consultando pronósticos...</div>`;
 
   try {
-    // Fetch en paralelo para todas las ciudades
     const results = await Promise.all(
       selected.map(c => fetchForecast(c.lat, c.lon, startDate, endDate).then(d => ({ ciudad: c, daily: d })))
     );
 
-    // Renderizar
     area.innerHTML = "";
     results.forEach(({ ciudad, daily }) => {
+      const dateRange = `${formatLabel(daily.time[0])} → ${formatLabel(daily.time[daily.time.length - 1])}`;
       const card = document.createElement("div");
       card.className = "chart-card";
-
-      const dateRange = `${formatDateLabel(daily.time[0])} → ${formatDateLabel(daily.time[daily.time.length - 1])}`;
       card.innerHTML = `
         <div class="chart-title">${ciudad.label}</div>
         <div class="chart-subtitle">${dateRange}</div>
         <div class="chart-plot" id="chart-${ciudad.id}"></div>
+        ${buildTable(ciudad, daily)}
       `;
       area.appendChild(card);
-
-      const { traces, layout, config } = buildChart(ciudad, daily, startDate, endDate);
+      const { traces, layout, config } = buildChart(ciudad, daily);
       Plotly.newPlot(`chart-${ciudad.id}`, traces, layout, config);
     });
 
@@ -507,11 +432,7 @@ async function updateCharts() {
   }
 }
 
-// ═══════════════════════════════════════════════════════════
-// START
-// ═══════════════════════════════════════════════════════════
 initControls();
 </script>
-
 </body>
 </html>
