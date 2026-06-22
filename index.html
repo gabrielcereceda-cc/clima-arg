@@ -253,31 +253,82 @@ function getAlerts(ciudad, daily) {
 }
 
 
+// ── Referencias fijas por ciudad ─────────────────────────────
+const REFERENCIAS = {
+  sin_gas: {
+    label: "Sin gas (jun-25)",
+    bg: "#D9E1F2",
+    tucuman:   { min: 3,  max: 14 },
+    cordoba:   { min: 1,  max: 12 },
+    rosario:   { min: 3,  max: 10 },
+    bsas:      { min: -5, max: 6  },
+    neuquen:   { min: 2,  max: 13 },
+    bariloche: { min: 2,  max: 7  },
+    comodoro:  { min: null, max: null },
+  },
+  con_gas: {
+    label: "Con gas (jun-25)",
+    bg: "#D9E1F2",
+    tucuman:   { min: 4,  max: 19 },
+    cordoba:   { min: 4,  max: 15 },
+    rosario:   { min: 3,  max: 13 },
+    bsas:      { min: 4,  max: 11 },
+    neuquen:   { min: -5, max: 1  },
+    bariloche: { min: 5,  max: 19 },
+    comodoro:  { min: 1,  max: 7  },
+  },
+  ola_polar: {
+    label: "Ola polar (jul-25)",
+    bg: "#BDD7EE",
+    tucuman:   { min: 8,  max: 18 },
+    cordoba:   { min: 7,  max: 15 },
+    rosario:   { min: 8,  max: 15 },
+    bsas:      { min: 8,  max: 14 },
+    neuquen:   { min: -6, max: 3  },
+    bariloche: { min: -4, max: 2  },
+    comodoro:  { min: 3,  max: 7  },
+  },
+};
+
 // ── Tabla resumen ─────────────────────────────────────────────
 function buildSummaryTable(results) {
   const fechas = results[0].daily.time;
-  const showOla = layers.ola_polar;
 
+  // Header fila 1: "Pronóstico" label + ciudades
   const cityHeaders = results.map(({ ciudad }) =>
-    `<th class="city-header" colspan="${showOla && OLA_POLAR[ciudad.id] ? 4 : 2}">${ciudad.label}</th>`
+    `<th class="city-header" colspan="2">${ciudad.label}</th>`
   ).join("");
 
-  const subHeaders = results.map(({ ciudad }) => {
-    const ola = showOla && OLA_POLAR[ciudad.id];
-    return `<th class="sub-min city-border">Min</th><th class="sub-max">Max</th>` +
-      (ola ? `<th class="sub-ref">Min ref</th><th class="sub-ref">Max ref</th>` : "");
+  // Header fila 2: Min / Max
+  const subHeaders = results.map(() =>
+    `<th class="sub-min city-border">Min</th><th class="sub-max">Max</th>`
+  ).join("");
+
+  // Filas de referencia (sin gas, con gas, ola polar)
+  const refRows = Object.values(REFERENCIAS).map(ref => {
+    const cells = results.map(({ ciudad }) => {
+      const v = ref[ciudad.id];
+      const mn = v && v.min !== null ? `${v.min}°` : "—";
+      const mx = v && v.max !== null ? `${v.max}°` : "—";
+      return `<td class="city-border" style="color:#1e5a8a;font-weight:600;background:${ref.bg}">${mn}</td>
+              <td style="color:#b83020;font-weight:600;background:${ref.bg}">${mx}</td>`;
+    }).join("");
+    return `<tr>
+      <td class="col-fecha" style="background:${ref.bg};font-style:italic;color:var(--muted)">${ref.label}</td>
+      ${cells}
+    </tr>`;
   }).join("");
 
+  // Filas de pronóstico
   const rows = fechas.map((iso, i) => {
     const cells = results.map(({ ciudad, daily }) => {
       const mn  = Math.round(daily.temperature_2m_min[i]);
       const mx  = Math.round(daily.temperature_2m_max[i]);
-      const ola = showOla && OLA_POLAR[ciudad.id];
+      const ola = OLA_POLAR[ciudad.id];
       const alertMn = ola && mn < ola.min;
       const alertMx = ola && mx < ola.min;
       return `<td class="td-min city-border${alertMn ? " td-alert" : ""}">${mn}°</td>` +
-             `<td class="td-max${alertMx ? " td-alert" : ""}">${mx}°</td>` +
-             (ola ? `<td class="td-ref">${ola.min}°</td><td class="td-ref">${ola.max}°</td>` : "");
+             `<td class="td-max${alertMx ? " td-alert" : ""}">${mx}°</td>`;
     }).join("");
     return `<tr><td class="col-fecha">${formatLabel(iso)}</td>${cells}</tr>`;
   }).join("");
@@ -290,10 +341,13 @@ function buildSummaryTable(results) {
       </div>
       <table class="summary-table" id="summary-table">
         <thead>
-          <tr><th class="col-fecha">Fecha</th>${cityHeaders}</tr>
+          <tr><th class="col-fecha">Fecha / Pronóstico</th>${cityHeaders}</tr>
           <tr><th></th>${subHeaders}</tr>
         </thead>
-        <tbody>${rows}</tbody>
+        <tbody>
+          ${refRows}
+          ${rows}
+        </tbody>
       </table>
     </div>`;
 }
