@@ -257,18 +257,18 @@ function getAlerts(ciudad, daily) {
 const REFERENCIAS = {
   sin_gas: {
     label: "Sin gas (jun-25)",
-    bg: "#D9E1F2",
+    bg: "#D6E4EA",
     tucuman:   { min: 3,  max: 14 },
-    cordoba:   { min: 1,  max: 12 },
-    rosario:   { min: 3,  max: 10 },
-    bsas:      { min: -5, max: 6  },
-    neuquen:   { min: 2,  max: 13 },
-    bariloche: { min: 2,  max: 7  },
-    comodoro:  { min: null, max: null },
+    cordoba:   { min: 1,  max: 14 },
+    rosario:   { min: 1,  max: 12 },
+    bsas:      { min: 3,  max: 10 },
+    neuquen:   { min: -5, max: 6  },
+    bariloche: { min: 2,  max: 13 },
+    comodoro:  { min: 2,  max: 7  },
   },
   con_gas: {
     label: "Con gas (jun-25)",
-    bg: "#D9E1F2",
+    bg: "#EDE0D0",
     tucuman:   { min: 4,  max: 19 },
     cordoba:   { min: 4,  max: 15 },
     rosario:   { min: 3,  max: 13 },
@@ -279,7 +279,7 @@ const REFERENCIAS = {
   },
   ola_polar: {
     label: "Ola polar (jul-25)",
-    bg: "#BDD7EE",
+    bg: "#B8D8E8",
     tucuman:   { min: 8,  max: 18 },
     cordoba:   { min: 7,  max: 15 },
     rosario:   { min: 8,  max: 15 },
@@ -326,7 +326,7 @@ function buildSummaryTable(results) {
       const mx  = Math.round(daily.temperature_2m_max[i]);
       const ola = OLA_POLAR[ciudad.id];
       const alertMn = ola && mn < ola.min;
-      const alertMx = ola && mx < ola.min;
+      const alertMx = ola && mx < ola.max;
       return `<td class="td-min city-border${alertMn ? " td-alert" : ""}">${mn}°</td>` +
              `<td class="td-max${alertMx ? " td-alert" : ""}">${mx}°</td>`;
     }).join("");
